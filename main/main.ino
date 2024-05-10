@@ -42,6 +42,8 @@ const long interval2 = 10;   // Interval for function 2 (in milliseconds)
 bool changeFlag = false;
 bool initFlag = false;
 unsigned long threshold = 348;
+bool dirFlag = false; // False - left; True - right
+int dirCount = 0;
 
 void setup() {
   Serial.begin(115200);
@@ -78,12 +80,14 @@ void loop() {
 
   if (currentMillis - previousMillis1 >= interval1) {
     previousMillis1 = currentMillis;
-    if (!changeFlag) {
-      move_robot_circular(0.3, PI / 2, 1, wait_time);
-      changeFlag = true;
+    if (dirCount <= 2) {
+      move_robot_circular(0.3, PI / 6, 1, wait_time);
+      dirCount += 1;
+    } else if (dirCount <= 5){
+      move_robot_circular(0.3, -PI / 6, 1, wait_time);
+      dirCount += 1;
     } else {
-      move_robot_circular(0.3, -PI / 2, 1, wait_time);
-      changeFlag = false;
+      dirCount = 0;
     }
   }
 
@@ -153,7 +157,7 @@ float sweep_detector(unsigned long threshold) {
   xn1 = xn;
   yn1 = yn;
   if (initFlag) {
-    if (threshold + 8 < yn) {
+    if (threshold + 9 < yn) {
       tone(BUZZER_PIN, 1000);
     } else {
       noTone(BUZZER_PIN);
