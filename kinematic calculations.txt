@@ -1,0 +1,57 @@
+//  // Rolling Contstraint
+//  BLA::Matrix<4,3> J_f;  
+//  BLA::Matrix<4,3> J_s;
+//  BLA::Matrix<8,3> J1;
+//  BLA::Matrix<4,4> J2;
+//  
+//  //FL RL RR FR
+//  J_f = {sin(PI/4 + PI/4)   , -cos(PI/4 + PI/4)   , -WHEEL_L*cos(PI/4),
+//         sin(3*PI/4 - PI/4) , -cos(3*PI/4 - PI/4) , -WHEEL_L*cos(-PI/4),
+//         sin(-3*PI/4 + PI/4), -cos(-3*PI/4 + PI/4), -WHEEL_L*cos(PI/4),
+//         sin(-PI/4 + -PI/4) , -cos(-PI/4 + -PI/4) , -WHEEL_L*cos(-PI/4)};
+//
+//  // No stearable wheels
+//  J_s = {0, 0, 0,
+//         0, 0, 0,
+//         0, 0, 0, 
+//         0, 0, 0};
+//
+//  // Merge J_f & J_s
+//  J1 = {sin(PI/4 + PI/4)   , -cos(PI/4 + PI/4)   , -WHEEL_L*cos(PI/4),
+//        sin(3*PI/4 - PI/4) , -cos(3*PI/4 - PI/4) , -WHEEL_L*cos(-PI/4),
+//        sin(-3*PI/4 + PI/4), -cos(-3*PI/4 + PI/4), -WHEEL_L*cos(PI/4),
+//        sin(-PI/4 + -PI/4) , -cos(-PI/4 + -PI/4) , -WHEEL_L*cos(-PI/4),
+//        0, 0, 0,
+//        0, 0, 0,
+//        0, 0, 0, 
+//        0, 0, 0};
+//
+//  // The diagonal wheel matrix
+//  J2 = {WHEEL_RADIUS, 0, 0, 0,
+//        0, WHEEL_RADIUS, 0, 0,
+//        0, 0, WHEEL_RADIUS, 0,
+//        0, 0, 0, WHEEL_RADIUS};
+//
+//  // No Sliding Contstraint
+//  BLA::Matrix<4,3> C_f;  
+//  BLA::Matrix<4,3> C_s;
+//  BLA::Matrix<8,3> C;
+//
+//  C_f = {cos(PI/4 + PI/4)   , sin(PI/4 + PI/4)   , WHEEL_L*sin(PI/4),
+//         cos(3*PI/4 - PI/4) , sin(3*PI/4 - PI/4) , WHEEL_L*sin(-PI/4),
+//         cos(-3*PI/4 + PI/4), sin(-3*PI/4 + PI/4), WHEEL_L*sin(PI/4),
+//         cos(-PI/4 + -PI/4) , sin(-PI/4 + -PI/4) , WHEEL_L*sin(-PI/4)};
+//         
+//  C_s = {0, 0, 0,
+//         0, 0, 0,
+//         0, 0, 0, 
+//         0, 0, 0};
+//         
+//  C = {cos(PI/4 + PI/4)   , sin(PI/4 + PI/4)   , WHEEL_L*sin(PI/4),
+//       cos(3*PI/4 - PI/4) , sin(3*PI/4 - PI/4) , WHEEL_L*sin(-PI/4),
+//       cos(-3*PI/4 + PI/4), sin(-3*PI/4 + PI/4), WHEEL_L*sin(PI/4),
+//       cos(-PI/4 + -PI/4) , sin(-PI/4 + -PI/4) , WHEEL_L*sin(-PI/4),
+//       0, 0, 0,
+//       0, 0, 0,
+//       0, 0, 0, 
+//       0, 0, 0};
